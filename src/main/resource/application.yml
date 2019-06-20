@@ -1,0 +1,32 @@
+server:
+  context-path: /demo
+spring:
+  activemq:
+    user: zlq                         # 连接用户名
+    password: 123456                  # 连接密码
+    broker-url: tcp://172.18.20.61:61616 # 消息组件的连接主机信息
+  messages:
+    basename: i18n/Messages,i18n/Pages
+  thymeleaf:
+    mode: HTML5
+    encoding: UTF-8
+    content-type: text/html
+    # 开发禁用缓存
+    cache: false
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource    # 配置当前要使用的数据源的操作类型
+    driver-class-name: org.gjt.mm.mysql.Driver      # 配置MySQL的驱动程序类
+    url: jdbc:mysql://localhost:3306/t_user         # 数据库连接地址
+    username: root                                  # 数据库用户名
+    password: 123456                                # 数据库连接密码
+    filters: stat,wall,log4j
+    dbcp2:                                          # 进行数据库连接池的配置
+      min-idle: 5                                   # 数据库连接池的最小维持连接数    
+      initial-size: 5                               # 初始化提供的连接数
+      max-total: 5                                  # 最大的连接数
+      max-wait-millis: 200                          # 等待连接获取的最大超时时间s
+    hikari:
+      connection-timeout: 60000 
+mybatis:
+  mapperLocations: classpath:com/zlq/mapper/*.xml
+  typeAliasesPackage: com.zlq.demo.model
